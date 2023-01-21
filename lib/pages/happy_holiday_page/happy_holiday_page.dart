@@ -1,12 +1,7 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:happyholidays/pages/pages.dart';
-import '../../common_widget/common_widget.dart'; 
-
-
-
+import 'package:happyholidays/styles/styles.dart';
+import '../../common_widget/common_widget.dart';
 
 class HappyHoliday extends StatelessWidget {
   const HappyHoliday({super.key});
@@ -15,7 +10,7 @@ class HappyHoliday extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromRGBO(62, 103, 244, 1),
+      backgroundColor: AppColor.teritaryColor,
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +20,7 @@ class HappyHoliday extends StatelessWidget {
             padding: EdgeInsets.only(top: 20, left: 24),
             child: Text(
               "Hi,Vetrick\!",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: TextColor.secondaryColor),
             ),
           ),
           Padding(
@@ -34,7 +29,7 @@ class HappyHoliday extends StatelessWidget {
               "Where do you",
               style: TextStyle(
                   fontSize: 43,
-                  color: Colors.white,
+                  color: TextColor.secondaryColor,
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -44,7 +39,7 @@ class HappyHoliday extends StatelessWidget {
               "Want to go\?",
               style: TextStyle(
                   fontSize: 43,
-                  color: Colors.white,
+                  color: TextColor.secondaryColor,
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -52,10 +47,9 @@ class HappyHoliday extends StatelessWidget {
             padding: EdgeInsets.only(left: 20),
             child: Text(
               "We filter out a best place for your next vecation",
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: TextStyle(fontSize: 15, color: TextColor.secondaryColor),
             ),
           ),
-           
           Padding(
             padding: EdgeInsets.only(left: 20, top: 10),
             child: SizedBox(
@@ -63,7 +57,7 @@ class HappyHoliday extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    fillColor: AppColor.secondaryColor,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(50),
@@ -73,30 +67,31 @@ class HappyHoliday extends StatelessWidget {
               ),
             ),
           ),
-
           Container(
             height: MediaQuery.of(context).size.height / 5,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-
                 ///1st
-              CommonRow(image1: "assets/p1.jpg",text:'Kuching',text1:'Malaysia'),
-              CommonRow(image1: "assets/p2.jpg",text:'Bali',text1:'indonesia'),
-              CommonRow(image1: "assets/p3.jpg",text:'London',text1:'England'),
+                CommonRow(
+                    image1: "assets/p1.jpg",
+                    text: 'Kuching',
+                    text1: 'Malaysia'),
+                CommonRow(
+                    image1: "assets/p2.jpg", text: 'Bali', text1: 'indonesia'),
+                CommonRow(
+                    image1: "assets/p3.jpg", text: 'London', text1: 'England'),
 
-              CommonRow(image1: "assets/p4.jpg",text:'Paris',text1:'France'),
-              CommonRow(image1: "assets/p6.jpg",text:'India Gate',text1:'India'),
-              CommonRow(image1: "assets/p5.jpg",text:'Bankok',text1:'Thailand'),
-              
-
+                CommonRow(
+                    image1: "assets/p4.jpg", text: 'Paris', text1: 'France'),
+                CommonRow(
+                    image1: "assets/p6.jpg",
+                    text: 'India Gate',
+                    text1: 'India'),
+                CommonRow(
+                    image1: "assets/p5.jpg", text: 'Bankok', text1: 'Thailand'),
 
                 /////end
-
-             
-             
-               
-               
               ],
             ),
           ),
@@ -106,7 +101,7 @@ class HappyHoliday extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 402,
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 255, 252, 252),
+                  color: AppColor.secondaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -127,25 +122,33 @@ class HappyHoliday extends StatelessWidget {
                   ///////List View
                   Container(
                     height: 340,
-                    child:ListView(
-                         children: [
-                           
-                             
-                             
-              CommonContainer(image: "assets/p1.jpg",text:'Kuching',text1:'Malaysia'),
-              CommonContainer(image: "assets/p2.jpg",text:'Bali',text1:'indonesia'),
-              CommonContainer(image: "assets/p3.jpg",text:'London',text1:'England'),
-
-              CommonContainer (image: "assets/p4.jpg",text:'Paris',text1:'France'),
-              CommonContainer(image: "assets/p6.jpg",text:'India Gate',text1:'India'),
-              CommonContainer(image: "assets/p5.jpg",text:'Bankok',text1:'Thailand'),
-              
-                             
-                                
-                          
-
-                         ],
-
+                    child: ListView(
+                      children: [
+                        CommonContainer(
+                            image: "assets/p1.jpg",
+                            text: 'Kuching',
+                            text1: 'Malaysia'),
+                        CommonContainer(
+                            image: "assets/p2.jpg",
+                            text: 'Bali',
+                            text1: 'indonesia'),
+                        CommonContainer(
+                            image: "assets/p3.jpg",
+                            text: 'London',
+                            text1: 'England'),
+                        CommonContainer(
+                            image: "assets/p4.jpg",
+                            text: 'Paris',
+                            text1: 'France'),
+                        CommonContainer(
+                            image: "assets/p6.jpg",
+                            text: 'India Gate',
+                            text1: 'India'),
+                        CommonContainer(
+                            image: "assets/p5.jpg",
+                            text: 'Bankok',
+                            text1: 'Thailand'),
+                      ],
                     ),
                   ),
                 ],
@@ -157,6 +160,3 @@ class HappyHoliday extends StatelessWidget {
     );
   }
 }
-
-
-
