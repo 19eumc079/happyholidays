@@ -172,22 +172,7 @@ class TopWidget extends StatelessWidget {
           SameBox(text: "Must Visit"),
           SizedBox(
             height: MediaQuery.of(context).size.height / 4,
-            child: ListView(
-              children: [
-                CommonContainer(
-                    image: "assets/p1.jpg", text: 'Kuching', text1: 'Malaysia'),
-                CommonContainer(
-                    image: "assets/p2.jpg", text: 'Bali', text1: 'indonesia'),
-                CommonContainer(
-                    image: "assets/p3.jpg", text: 'London', text1: 'England'),
-                CommonContainer(
-                    image: "assets/p4.jpg", text: 'Paris', text1: 'France'),
-                CommonContainer(
-                    image: "assets/p6.jpg", text: 'India Gate', text1: 'India'),
-                CommonContainer(
-                    image: "assets/p5.jpg", text: 'Bankok', text1: 'Thailand'),
-              ],
-            ),
+            child: CommonContainer(),
           ),
         ],
       ),

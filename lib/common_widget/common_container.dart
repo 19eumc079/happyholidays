@@ -1,50 +1,70 @@
-
 import 'package:flutter/material.dart';
 import 'package:happyholidays/pages/pages.dart';
 
 class CommonContainer extends StatelessWidget {
-    CommonContainer ({required this.image,required this.text1,required this.text});
-    final String image;
-    final String text1;
-    final String text;
-    @override
-    Widget build(BuildContext context){
-        return  
-                       
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage(image),
-                            radius: 50,
-                          ),
-                          title: Text(
-                                 text1,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: Container(
-                            child: Column(
-                              children: [
-                                Text(
-                                  "\$5-\$24",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text("4.2")
-                              ],
-                            ),
-                          ),
-                          subtitle: Text(text),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        DetailsPage()));
-                          },
-                        );
-                         
-                      
-                     
-    }
+  final List<String> names = <String>[
+    'Kuching',
+    'Bali',
+    'London',
+    'Paris',
+    'India Gate',
+    'Bankok',
+    'Bali',
+    'Paris'
+  ];
+
+  final List<String> subnames = <String>[
+    'Malaysia',
+    'Indonesia',
+    'England',
+    'France',
+    'India',
+    'Thailand',
+    'Indonesia',
+    'France'
+  ];
+  final List<String> image1 = <String>[
+    'assets/p1.jpg',
+    'assets/p2.jpg',
+    'assets/p3.jpg',
+    'assets/p4.jpg',
+    'assets/p5.jpg',
+    'assets/p6.jpg',
+    'assets/p3.jpg',
+    'assets/p5.jpg',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+          itemCount: names.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('${image1[index]}'),
+                  radius: 50,
+                ),
+                trailing: Container(
+                  child: Column(
+                    children: [
+                      Text(
+                        "\$5-\$24",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text("4.2")
+                    ],
+                  ),
+                ),
+                subtitle: Text('${subnames[index]}'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => DetailsPage()));
+                },
+                title: Text('${names[index]}'));
+          }),
+    );
+  }
 }
-
-
-
