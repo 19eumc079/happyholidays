@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import '../../styles/styles.dart';
+import 'package:happyholidays/styles/styles.dart';
 
 class SmallCntainerWidget extends StatelessWidget {
   const SmallCntainerWidget({required this.text1, required this.text});
@@ -10,18 +10,18 @@ class SmallCntainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: 10, top: 10),
+        Container(
+          margin: EdgeInsets.only(left: 10, top: 10),
           child: Text(
             text1,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: TextFonts.secontaryText,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 10, top: 5),
+        Container(
+          margin: EdgeInsets.only(left: 10, top: 5),
           child: Text(
             text,
-            style: TextStyle(fontSize: 15, color: Colors.grey),
+            style: TextFonts.teritaryText,
           ),
         ),
       ],

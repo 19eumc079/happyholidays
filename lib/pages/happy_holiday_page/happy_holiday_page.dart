@@ -17,58 +17,43 @@ class HappyHoliday extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 20, left: 24),
-            child: Text(
-              "Hi,Vetrick\!",
-              style: TextStyle(fontSize: 20, color: TextColor.secondaryColor),
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Hi,Vetrick!",
+                  style: WelcomeFonts.primaryText,
+                ),
+                Text(
+                  "Where do you \nWant to go?",
+                  style: WelcomeFonts.secontaryText,
+                ),
+                Text(
+                  "We filter out a best place for your next vecation",
+                  style: WelcomeFonts.primaryText,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: AppColor.secondaryColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BoxBorders.primaryBoxBorders,
+                        ),
+                        prefixIcon: Icon(Icons.search),
+                        hintText: ("Search City...")),
+                  ),
+                ),
+              ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 0, left: 20),
-            child: Text(
-              "Where do you",
-              style: TextStyle(
-                  fontSize: 43,
-                  color: TextColor.secondaryColor,
-                  fontWeight: FontWeight.bold),
-            ),
+          SizedBox(
+            height: 30,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 8),
-            child: Text(
-              "Want to go\?",
-              style: TextStyle(
-                  fontSize: 43,
-                  color: TextColor.secondaryColor,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              "We filter out a best place for your next vecation",
-              style: TextStyle(fontSize: 15, color: TextColor.secondaryColor),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, top: 10),
-            child: SizedBox(
-              width: 350,
-              child: TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppColor.secondaryColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    prefixIcon: Icon(Icons.search),
-                    hintText: ("Search City...")),
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height / 5,
+          Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
@@ -95,27 +80,22 @@ class HappyHoliday extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
+          Expanded(
+            flex: 3,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 402,
+              margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                   color: AppColor.secondaryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                    bottomRight: Radius.circular(40),
-                    bottomLeft: Radius.circular(40),
-                  )),
+                  borderRadius: BoxBorders.secondaryBoxBorders),
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 0, right: 180, top: 30),
+                  Container(
+                    padding: EdgeInsets.only(right: 180, top: 30),
                     child: Text(
                       "You might like!",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style: TextFonts.primaryText,
                     ),
                   ),
 

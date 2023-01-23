@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happyholidays/pages/details_page/details_page_components/details_page_components.dart';
 import 'package:happyholidays/pages/details_page/details_page_components/small_cntainer_widget.dart';
 import 'package:happyholidays/pages/pages.dart';
 import 'package:happyholidays/styles/styles.dart';
@@ -18,7 +19,7 @@ class DetailsPage extends StatelessWidget {
         elevation: 0,
         title: Text(
           "City Details",
-          style: TextStyle(fontSize: 20),
+          style: TextFonts.qationaryText,
         ),
         actions: [
           Padding(
@@ -37,104 +38,10 @@ class DetailsPage extends StatelessWidget {
             color: AppColor.teritaryColor,
           ),
           Positioned(
-            bottom: 0,
+            bottom: 1,
             right: 0,
             left: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 440,
-              decoration: BoxDecoration(
-                  color: AppColor.secondaryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                    bottomRight: Radius.circular(40),
-                    bottomLeft: Radius.circular(40),
-                  )),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 0, right: 240, top: 30),
-                    child: Text(
-                      "Things to do",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 6,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        CommonRow(
-                            image1: "assets/s6.png",
-                            text: 'Kuching',
-                            text1: 'Party'),
-                        CommonRow(
-                            image1: "assets/s111.jpg",
-                            text: 'Bali',
-                            text1: 'Books'),
-                        CommonRow(
-                            image1: "assets/s2.jpeg",
-                            text: 'London',
-                            text1: 'Camp Fire'),
-                        CommonRow(
-                            image1: "assets/s3.png",
-                            text: 'Paris',
-                            text1: 'Gym'),
-                        CommonRow(
-                            image1: "assets/s4.png",
-                            text: 'IndiaGate',
-                            text1: 'Yoga'),
-                        CommonRow(
-                            image1: "assets/s5.jpg",
-                            text: 'Bankok',
-                            text1: 'Ice Skate'),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 250),
-                    child: Text(
-                      "Must Visit",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    height: 217,
-                    child: ListView(
-                      children: [
-                        CommonContainer(
-                            image: "assets/p1.jpg",
-                            text: 'Kuching',
-                            text1: 'Malaysia'),
-                        CommonContainer(
-                            image: "assets/p2.jpg",
-                            text: 'Bali',
-                            text1: 'indonesia'),
-                        CommonContainer(
-                            image: "assets/p3.jpg",
-                            text: 'London',
-                            text1: 'England'),
-                        CommonContainer(
-                            image: "assets/p4.jpg",
-                            text: 'Paris',
-                            text1: 'France'),
-                        CommonContainer(
-                            image: "assets/p6.jpg",
-                            text: 'India Gate',
-                            text1: 'India'),
-                        CommonContainer(
-                            image: "assets/p5.jpg",
-                            text: 'Bankok',
-                            text1: 'Thailand'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            child: TopWidget(),
           ),
           Container(
               margin: EdgeInsets.only(top: 15),
@@ -142,16 +49,14 @@ class DetailsPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   color: AppColor.secondaryColor,
-                  borderRadius: BorderRadius.circular(30)),
+                  borderRadius: BoxBorders.teritaryBoxBorders),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ListTile(
                     title: Padding(
                       padding: EdgeInsets.only(top: 10),
-                      child: Text("Bangkok",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
+                      child: Text("Bangkok", style: TextFonts.primaryText),
                     ),
                     subtitle: Text("Thailand"),
                     trailing: Wrap(children: [
@@ -162,7 +67,7 @@ class DetailsPage extends StatelessWidget {
                         child: IconButton(
                           icon: Icon(
                             Icons.location_on_rounded,
-                            color: Colors.black,
+                            color: AppColor.primaryColor,
                           ),
                           onPressed: () {},
                         ),
@@ -177,37 +82,35 @@ class DetailsPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 15, left: 15),
                     child: Text(
-                        "Bangkok, Thailand's capital, is a large city known for ornate shrines and vibrant street life. The bo Read More"),
+                        "Bangkok, Thailand's capital, is a large city known for ornate \nshrines and vibrant street life. The bo Read More"),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 45),
+                  Container(
+                    margin: EdgeInsets.only(right: 45),
                     child: Divider(
                       height: 20,
                       thickness: 2,
                       indent: 20,
-                      color: Color.fromRGBO(128, 128, 128, 2),
+                      color: TextColor.teritaryColor,
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SmallCntainerWidget(
-                          text1: "8,375k+",
-                          text: "Population",
-                        ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SmallCntainerWidget(
+                        text1: "8,375k+",
+                        text: "Population",
+                      ),
 
-                        SmallCntainerWidget(
-                          text1: "Thai\/Siamese",
-                          text: "Language",
-                        ),
-                        SmallCntainerWidget(
-                          text1: "Thai Baht",
-                          text: "Currency",
-                        ),
-                        ///////////////
-                      ],
-                    ),
+                      SmallCntainerWidget(
+                        text1: "Thai\/Siamese",
+                        text: "Language",
+                      ),
+                      SmallCntainerWidget(
+                        text1: "Thai Baht",
+                        text: "Currency",
+                      ),
+                      ///////////////
+                    ],
                   ),
                 ],
               )),
@@ -221,6 +124,71 @@ class DetailsPage extends StatelessWidget {
                   backgroundImage: AssetImage('assets/p5.jpg'),
                 ),
               ))
+        ],
+      ),
+    );
+  }
+}
+
+class TopWidget extends StatelessWidget {
+  const TopWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 2,
+      decoration: BoxDecoration(
+          color: AppColor.secondaryColor,
+          borderRadius: BoxBorders.secondaryBoxBorders),
+      child: Column(
+        children: [
+          SameBox(text: "Things to do"),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 6,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CommonRow(
+                    image1: "assets/s6.png", text: 'Kuching', text1: 'Party'),
+                CommonRow(
+                    image1: "assets/s111.jpg", text: 'Bali', text1: 'Books'),
+                CommonRow(
+                    image1: "assets/s2.jpeg",
+                    text: 'London',
+                    text1: 'Camp Fire'),
+                CommonRow(image1: "assets/s3.png", text: 'Paris', text1: 'Gym'),
+                CommonRow(
+                    image1: "assets/s4.png", text: 'IndiaGate', text1: 'Yoga'),
+                CommonRow(
+                    image1: "assets/s5.jpg",
+                    text: 'Bankok',
+                    text1: 'Ice Skate'),
+              ],
+            ),
+          ),
+          SameBox(text: "Must Visit"),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 4,
+            child: ListView(
+              children: [
+                CommonContainer(
+                    image: "assets/p1.jpg", text: 'Kuching', text1: 'Malaysia'),
+                CommonContainer(
+                    image: "assets/p2.jpg", text: 'Bali', text1: 'indonesia'),
+                CommonContainer(
+                    image: "assets/p3.jpg", text: 'London', text1: 'England'),
+                CommonContainer(
+                    image: "assets/p4.jpg", text: 'Paris', text1: 'France'),
+                CommonContainer(
+                    image: "assets/p6.jpg", text: 'India Gate', text1: 'India'),
+                CommonContainer(
+                    image: "assets/p5.jpg", text: 'Bankok', text1: 'Thailand'),
+              ],
+            ),
+          ),
         ],
       ),
     );
