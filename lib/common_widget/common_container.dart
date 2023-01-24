@@ -3,38 +3,6 @@ import 'package:happyholidays/models/happy_holiday_model/happy_holiday_model.dar
 import 'package:happyholidays/pages/pages.dart';
 
 class CommonContainer extends StatelessWidget {
-  // final List<String> names = <String>[
-  //   'Kuching',
-  //   'Bali',
-  //   'London',
-  //   'Paris',
-  //   'India Gate',
-  //   'Bankok',
-  //   'Bali',
-  //   'Paris'
-  // ];
-
-  // final List<String> subnames = <String>[
-  //   'Malaysia',
-  //   'Indonesia',
-  //   'England',
-  //   'France',
-  //   'India',
-  //   'Thailand',
-  //   'Indonesia',
-  //   'France'
-  // ];
-  // final List<String> image1 = <String>[
-  //   'assets/p1.jpg',
-  //   'assets/p2.jpg',
-  //   'assets/p3.jpg',
-  //   'assets/p4.jpg',
-  //   'assets/p5.jpg',
-  //   'assets/p6.jpg',
-  //   'assets/p3.jpg',
-  //   'assets/p5.jpg',
-  // ];
-
   List<TripData> data = [
     TripData(
         id: "1",
