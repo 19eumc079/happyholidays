@@ -1,68 +1,146 @@
+// import 'dart:convert';
+// import 'dart:ffi';
+
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:happyholidays/models/happy_holiday_model/happy_holiday_model.dart';
+import 'package:happyholidays/pages/happy_holiday_page/happy_holiday_components/more_page.dart';
 import 'package:happyholidays/pages/pages.dart';
+import 'package:happyholidays/styles/styles.dart';
+import 'package:happyholidays/services/data_base.dart';
+
+// class CommonContainer extends StatelessWidget {
+//   List<TripData> trip = [];
+
+//   @override
+//   Widget build(BuildContext context) {
+//     FirebaseDatabase database = FirebaseDatabase.instance;
+//     DatabaseReference ref = FirebaseDatabase.instance.ref("tripdata");
+//     // DatabaseEvent event = await ;
+//     return FutureBuilder<DatabaseEvent>(
+//       future: ref.once(),
+//       builder: (context, snapshot) {
+//         ;
+//         if (snapshot.hasData) {
+//           DatabaseEvent event = snapshot.data!;
+
+//           List<Object?> data = event.snapshot.value as dynamic;
+//           List data1 = data;
+
+//           data1.forEach((e) {
+//             trip.add(TripData(
+//                 id: e['id'].toString(),
+//                 place: e['place'],
+//                 country: e['country']));
+//           });
+
+//           return ListView.builder(
+//               shrinkWrap: true,
+//               itemCount: trip.length,
+//               itemBuilder: (BuildContext context, int index) {
+//                 return ListTile(
+//                     leading: CircleAvatar(
+//                       backgroundImage: AssetImage("assets/p1.jpg"),
+//                       radius: 50,
+//                     ),
+//                     trailing: Container(
+//                       child: Column(
+//                         children: [
+//                           Text(
+//                             "\$5-\$24",
+//                             style: TextStyle(fontWeight: FontWeight.bold),
+//                           ),
+//                           Text("4.2")
+//                         ],
+//                       ),
+//                     ),
+//                     subtitle: Text(trip[index].country),
+//                     onTap: () {
+//                       Navigator.push(
+//                           context,
+//                           MaterialPageRoute(
+//                               builder: (BuildContext context) =>
+//                                   DetailsPage()));
+//                     },
+//                     title: Text(trip[index].place));
+//               });
+//         } else if (snapshot.hasError) {
+//           return Text(snapshot.error.toString());
+//         }
+//         // By default show a loading spinner.
+//         return const CircularProgressIndicator();
+//       },
+//     );
+//   }
 
 class CommonContainer extends StatelessWidget {
-  List<TripData> data = [
-    TripData(
-        id: "1",
-        place: "Kuching",
-        country: "Malaysia",
-        image1: "assets/p1.jpg"),
-    TripData(
-        id: "2", place: "Bali", country: "Indonesia", image1: "assets/p2.jpg"),
-    TripData(
-        id: "3", place: "London", country: "England", image1: "assets/p3.jpg"),
-    TripData(
-        id: "4", place: "Paris", country: "France", image1: "assets/p4.jpg"),
-    TripData(
-        id: "1",
-        place: "India Gate",
-        country: "India",
-        image1: "assets/p6.jpg"),
-    TripData(
-        id: "1", place: "Bankok", country: "Thailand", image1: "assets/p5.jpg"),
-    TripData(
-        id: "1", place: "Bali", country: "Indonesia", image1: "assets/p2.jpg"),
-    TripData(
-        id: "1",
-        place: "Kuching",
-        country: "Malaysia",
-        image1: "assets/p1.jpg"),
-  ];
+  Query ref = FirebaseDatabase.instance.ref().child("tripdata");
+  DatabaseReference reference =
+      FirebaseDatabase.instance.ref().child("tripdata");
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-          shrinkWrap: true,
-          itemCount: data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(data[index].image1),
-                  radius: 50,
+    return FirebaseAnimatedList(
+      query: ref,
+      itemBuilder: (BuildContext context, DataSnapshot snapshot,
+          Animation<double> animation, int index) {
+        Map tripdata = snapshot.value as Map;
+        tripdata["key"] = snapshot.key;
+        return ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage("assets/p2.jpg"),
+              radius: 40,
+            ),
+            trailing: Wrap(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      tripdata['from_price'],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(tripdata['rating']),
+                  ],
                 ),
-                trailing: Container(
-                  child: Column(
-                    children: [
-                      Text(
-                        "\$5-\$24",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text("4.2")
-                    ],
-                  ),
-                ),
-                subtitle: Text(data[index].country),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => DetailsPage()));
-                },
-                title: Text(data[index].place));
-          }),
+                PopupMenuButton(
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem(
+                        onTap: () {
+                          reference.child(tripdata['key']).remove();
+                        },
+                        child: Icon(Icons.delete)),
+                    PopupMenuItem(
+                      child: Icon(Icons.update_rounded),
+                      onTap: () {
+                        Future.delayed(
+                            Duration(seconds: 1),
+                            (() => [
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              UpdatePage()))
+                                ]));
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+            subtitle: Text(tripdata['country']),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => DetailsPage()));
+            },
+            title: Text(tripdata['place']));
+      },
     );
   }
 }

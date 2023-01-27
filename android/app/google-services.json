@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "763298573511",
+    "firebase_url": "https://happy-holidays-8ab64-default-rtdb.firebaseio.com",
+    "project_id": "happy-holidays-8ab64",
+    "storage_bucket": "happy-holidays-8ab64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763298573511:android:bb71cf92260e09776722e2",
+        "android_client_info": {
+          "package_name": "com.example.happyholidays"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763298573511-s1ab224jv9gpm9ecq29ppn1jujcvfdbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC63EZFk8wRYB8stdNx1aU25s0IJzySxqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763298573511-s1ab224jv9gpm9ecq29ppn1jujcvfdbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
