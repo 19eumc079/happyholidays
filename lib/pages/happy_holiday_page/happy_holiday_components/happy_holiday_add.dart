@@ -5,8 +5,8 @@ import 'package:happyholidays/pages/pages.dart';
 import 'package:happyholidays/styles/styles.dart';
 
 class HappyHolidayAdd extends StatefulWidget {
-  const HappyHolidayAdd({super.key});
-
+  const HappyHolidayAdd({required this.tripKey});
+  final String tripKey;
   @override
   State<HappyHolidayAdd> createState() => _HappyHolidayAddState();
 }
@@ -24,7 +24,25 @@ class _HappyHolidayAddState extends State<HappyHolidayAdd> {
   void initState() {
     super.initState();
     ref = FirebaseDatabase.instance.ref().child('tripdata');
+    if (widget.tripKey != '') {
+      ref.child(widget.tripKey).once().then((value) {
+        DataSnapshot event = value.snapshot;
+        Map data = event.value as Map;
+
+        userPlaceController.text = data['place'];
+        userCountryController.text = data['country'];
+        useRatingController.text = data['rating'];
+        userPriceFromController.text = data['from_price'];
+      });
+    }
   }
+  ////////////
+
+  // getTripData() {
+  //   // DataSnapshot snapshot = ref.child(widget.tripKey).get() ;
+  //   // print(snapshot);
+  // }
+  ////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -126,21 +144,34 @@ class _HappyHolidayAddState extends State<HappyHolidayAdd> {
                         style: OutlinedButton.styleFrom(
                             backgroundColor: AppColor.teritaryColor),
                         onPressed: () {
-                          var count = 0;
-                          Map<String, String> data = {
-                            'place': userPlaceController.text,
-                            'country': userCountryController.text,
-                            'from_price': userPriceFromController.text,
-                            'rating': useRatingController.text,
-                          };
-                          ref.once().then((value) {
-                            DataSnapshot event = value.snapshot;
-                            List val = event.value as List;
-                            count = val.length;
-                            print(event.value as List);
-                            ref.child('$count').set(data);
+                          if (widget.tripKey == '') {
+                            var count = 0;
+                            Map<String, String> data = {
+                              'place': userPlaceController.text,
+                              'country': userCountryController.text,
+                              'from_price': userPriceFromController.text,
+                              'rating': useRatingController.text,
+                            };
+                            ref.once().then((value) {
+                              DataSnapshot event = value.snapshot;
+                              List val = event.value as List;
+                              count = val.length;
+                              print(event.value as List);
+                              ref.child('$count').set(data);
+                              Navigator.pop(context);
+                            });
+                          } else {
+                            print(widget.tripKey);
+                            Map<String, String> data = {
+                              'place': userPlaceController.text,
+                              'country': userCountryController.text,
+                              'from_price': userPriceFromController.text,
+                              'rating': useRatingController.text,
+                            };
+
+                            ref.child(widget.tripKey).update(data);
                             Navigator.pop(context);
-                          });
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),
@@ -154,13 +185,7 @@ class _HappyHolidayAddState extends State<HappyHolidayAdd> {
                       radius: 27,
                       child: IconButton(
                         icon: Icon(Icons.home_filled),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      HappyHoliday()));
-                        },
+                        onPressed: () {},
                       ),
                     )
                   ],

@@ -92,7 +92,7 @@ class CommonContainer extends StatelessWidget {
         tripdata["key"] = snapshot.key;
         return ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage("assets/p2.jpg"),
+              backgroundImage: AssetImage("assets/p4.jpg"),
               radius: 40,
             ),
             trailing: Wrap(
@@ -124,7 +124,9 @@ class CommonContainer extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              UpdatePage()))
+                                              HappyHolidayAdd(
+                                                tripKey: tripdata['key'],
+                                              )))
                                 ]));
                       },
                     ),
